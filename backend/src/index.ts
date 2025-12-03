@@ -12,6 +12,7 @@ dotenv.config();
 
 // define port
 const PORT = process.env.PORT || 5000;
+// 
 
 // database connection
 mongoose.connect(process.env.DATABASE_URL || '').then(() => {
@@ -19,13 +20,13 @@ mongoose.connect(process.env.DATABASE_URL || '').then(() => {
 }).catch((err) => {
     console.log('Error connecting to MongoDB:', err);
 });
+// for reading data from req body
+app.use(express.json())
 
 
 // endpoints
-app.get('/',(req,res) => {
-    res.send('API is working ');
-})
-app.use('/',recipeRoutes);
+
+app.use('/recipe',recipeRoutes);
 
 
 

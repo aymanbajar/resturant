@@ -14,7 +14,7 @@ const RecipeSchema =new Schema<IRecipe>({
     ingredients:{type:String, required:true}, 
     instructions:{type:String, required:true},
     createdAt:{type:Date, default:Date.now},
-    coverImage:{type:String, required:true}
+    coverImage:{type:String, required:false}
 })
 
-export const RecipeModel =  mongoose.model<IRecipe>('Recipe',RecipeSchema);
+export  const RecipeModel =  mongoose.model<IRecipe>('Recipe',RecipeSchema);
