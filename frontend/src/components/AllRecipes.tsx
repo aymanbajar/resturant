@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../Constants/BASE_URL";
+import { HiHeart } from "react-icons/hi";
 export default function AllRecipes() {
   const [recipes, setRecipes] = useState<any[]>([]);
   
@@ -26,11 +27,12 @@ export default function AllRecipes() {
             (recipes.length > 0 ? 
                 recipes.map((recipe:any) =>(
                 <div key={recipe._id}
-                className="flex flex-col justify-between items-start  border border-gray-300 rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300  hover:bg-orange-500 hover:text-white"
+                className="relative flex flex-col justify-between items-start  border border-gray-300 rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300  hover:bg-orange-500 hover:text-white"
                 >
                 <h4 className="text-sm md:text-xl lg:text-2xl xl:text-3xl font-bold mb-2">{recipe.title}</h4>
                 <p className="text-sm md:text-xl mb-2"> {recipe.ingredients}</p>
                 <p className="text-sm md:text-xl">  {recipe.instructions}</p>
+                <div className="absolute right-0 top-0 p-4 text-2xl text-blue-500"><HiHeart /></div>
               
             </div>
                 )):(
