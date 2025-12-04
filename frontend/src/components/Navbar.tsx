@@ -3,7 +3,7 @@ export default function Navbar() {
   return (
     <header className="bg-orange-500 font-serif shadow-md fixed w-full z-10 top-0 left-0 ">
       <nav className="flex flex-row justify-between items-center gap-2 px-2 md:px-4 lg:px-8 xl:px-16 py-2">
-        <div className="w-14 h-10 md:w-18 md:h-14 flex-shrink-0 ">
+        <div className="w-14 h-8 md:w-18 md:h-14 flex-shrink-0 ">
           <img
             className="w-full h-full  object-cover rounded-md"
             src={logo}
