@@ -1,19 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import { AuthProvider } from "./context/Auth/AuthProvider";
 function App() {
   return (
     <>
+      <AuthProvider>
       <BrowserRouter>
         <Navbar />
         <br />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<  HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
       <Footer />
+        </AuthProvider>
     </>
   );
 }
