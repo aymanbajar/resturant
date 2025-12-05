@@ -2,14 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../Constants/BASE_URL";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/Auth/AuthContext";
-import { useContext } from "react";
+import { useAuth } from "../context/Auth/AuthContext";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();   
-  const { login } = useContext(AuthContext);
+  const { login } = useAuth();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if(!email || !password){
