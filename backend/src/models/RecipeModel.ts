@@ -17,4 +17,4 @@ const RecipeSchema =new Schema<IRecipe>({
     coverImage:{type:String, required:false}
 })
 
-export  const RecipeModel =  mongoose.model<IRecipe>('Recipe',RecipeSchema);
+export  const recipeModel =  mongoose.model<IRecipe>('Recipe',RecipeSchema);

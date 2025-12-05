@@ -3,7 +3,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import recipeRoutes from './routes/recipe';
+import recipeRoutes from './routes/recipeRoute';
+import userRoutes from './routes/userRoute';
 
 // initialize express app
 const app =  express();
@@ -29,6 +30,7 @@ app.use(cors())
 // endpoints
 
 app.use('/recipe',recipeRoutes);
+app.use('/user',userRoutes);
 
 
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import {RecipeModel} from '../models/RecipeModel';
+import {recipeModel} from '../models/RecipeModel';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.post('/',async(req,res)=> {
         if(!title || !ingredients || !instructions){
             return res.status(400).send('All fields are required');
         }
-        const newRecipe = await RecipeModel.create({title, ingredients, instructions});
+        const newRecipe = await recipeModel.create({title, ingredients, instructions});
         res.status(201).json(newRecipe);
     } catch (error) {
         res.status(500).send('Server error');
@@ -20,7 +20,7 @@ router.post('/',async(req,res)=> {
 // for getting data from server
 router.get('/', async(req,res) => {
     try{
-        const recipes = await RecipeModel.find();
+        const recipes = await recipeModel.find();
         if(recipes.length === 0){
             return res.status(404).send('No recipes found');
         }
@@ -34,7 +34,7 @@ router.get('/', async(req,res) => {
 router.get('/:id', async(req,res) => {
     try{
         const _id:string = req.params.id;
-            const recipe = await RecipeModel.findById( _id);
+            const recipe = await recipeModel.findById( _id);
             
         if(!recipe){
             return res.status(404).send('Recipe not found');
@@ -53,7 +53,7 @@ router.put('/:id', async(req,res) => {
         if(!title || !ingredients || !instructions){
             return res.status(400).send('All fields are required');
         }
-        const updatedRecipe = await RecipeModel.findByIdAndUpdate(_id,{title, ingredients, instructions},{new:true});
+        const updatedRecipe = await recipeModel.findByIdAndUpdate(_id,{title, ingredients, instructions},{new:true});
         if(!updatedRecipe){
             return res.status(404).send('Recipe not found');
         }
@@ -68,7 +68,7 @@ router.put('/:id', async(req,res) => {
 router.delete('/:id', async(req,res) => {
     try{
         const _id:string = req.params.id;
-        const deletedRecipe = await RecipeModel.findByIdAndDelete(_id);
+        const deletedRecipe = await recipeModel.findByIdAndDelete(_id);
         if(!deletedRecipe){
             return res.status(404).send('Recipe not found');
         }
