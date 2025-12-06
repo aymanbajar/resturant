@@ -26,7 +26,7 @@ export default function Navbar() {
             <a href="/myRecipes">My Recipes</a>
           </li>
           <li>
-            <a href="/about">About</a>
+            <a href="/myFavRecipes"> Favourites</a>
           </li>
           <li>
             <a href="/contact">Contact</a>
