@@ -31,6 +31,8 @@ app.use(cors())
 
 app.use('/recipe',recipeRoutes);
 app.use('/user',userRoutes);
+// for sharing images statically
+app.use('/public',express.static('public'));
 
 
 
