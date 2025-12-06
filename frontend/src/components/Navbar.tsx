@@ -23,7 +23,7 @@ export default function Navbar() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/recipes">Recipes</a>
+            <a href="/myRecipes">My Recipes</a>
           </li>
           <li>
             <a href="/about">About</a>
@@ -75,10 +75,10 @@ export default function Navbar() {
                     </li>
                     <li className="w-full border-b border-white/20 pb-3 hover:border-cyan-300 transition-colors text-center">
                       <a
-                        href="/recipes"
+                        href="/MyRecipes"
                         className="block hover:text-cyan-300 transition-all duration-300"
                       >
-                        Recipes
+                       My Recipes
                       </a>
                     </li>
                     <li className="w-full border-b border-white/20 pb-3 hover:border-cyan-300 transition-colors text-center">
