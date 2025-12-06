@@ -1,10 +1,11 @@
 import express from 'express';
 import {recipeModel} from '../models/RecipeModel';
+import upload from '../middlewares/mutler';
 
 const router = express.Router();
 
 // for sending data to server
-router.post('/',async(req,res)=> {
+router.post('/', upload.single('coverImage'), async(req,res)=> {
     try{
         const {title, ingredients, instructions} = req.body;
         if(!title || !ingredients || !instructions){
