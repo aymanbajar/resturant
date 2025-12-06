@@ -83,10 +83,10 @@ export default function Navbar() {
                     </li>
                     <li className="w-full border-b border-white/20 pb-3 hover:border-cyan-300 transition-colors text-center">
                       <a
-                        href="/about"
+                        href="/myFavRecipes"
                         className="block hover:text-cyan-300 transition-all duration-300"
                       >
-                        About
+                        Favourites
                       </a>
                     </li>
                     <li className="w-full border-b border-white/20 pb-3 hover:border-cyan-300 transition-colors text-center">
