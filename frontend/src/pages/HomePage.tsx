@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import image1 from "../../public/images/image1.png";
 import "../animations/fade-in.css"
 import "../animations/float.css"
 import AllRecipes from "../components/AllRecipes";
+
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen ">
       {/* hero section */}
@@ -16,7 +19,7 @@ export default function Home() {
             home cook, our platform is designed to inspire and connect you with
             others who share your passion for culinary delights.
           </p>
-          <button className='bg-gradient-to-r from-cyan-800 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-semibold rounded-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 '>Share Your Recipe</button>
+          <button onClick={() => navigate('/addRecipe')} className='bg-gradient-to-r from-cyan-800 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-semibold rounded-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 '>Share Your Recipe</button>
         </div>
         {/* right */}
         <div className='w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 flex-shrink-0 animate-float'> <img className='w-full h-full object-cover rounded-2xl shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300' src={image1} alt="Delicious Recipe" /> </div>
