@@ -1,19 +1,23 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { BASE_URL } from '../Constants/BASE_URL';
+import { useNavigate } from 'react-router-dom';
 export default function AddRecipe() {
+    const navigate = useNavigate();
     const[formData, setFormData] = useState({
         title:'',
         ingredients:'',
         instructions:'',
-        image:null as File | null,
+        coverImage:null as File | null,
     });
   const [imagePreview, setImagePreview] = useState<string>("");
 
 //   function to handle form input changes
     const handleChange =(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const{name,value}=e.target;
+        const value =(e.target.name ==='ingredients' ? e.target.value.split(',') :(e.target.name ==='coverImage' ? e.target.files?.[0] : e.target.value));
         setFormData((prev) =>(
             {
-            ...prev, [name]:value
+            ...prev, [e.target.name]:value  
         }
         ))
     }
@@ -23,7 +27,7 @@ export default function AddRecipe() {
         if(file){
             setFormData((prev) => ({
                 ...prev,
-                image:file
+                coverImage:file
         }));
         // create image preview
         const reader = new FileReader();
@@ -35,9 +39,27 @@ export default function AddRecipe() {
 }
 
     // function handle submit
-    const handleSubmit = (e:React.FormEvent) => {
+    const handleSubmit = async(e:React.FormEvent) => {
         e.preventDefault();
         console.log("Form data submitted:", formData);
+        try{
+            const response = await axios.post(`${BASE_URL}/recipe`, formData,{
+                headers:{
+                    'Content-Type':'multipart/form-data'
+                }
+            });
+            console.log("Recipe added successfully:", response.data);
+            setFormData({
+                title:'',
+                ingredients:'',
+                instructions:'',
+                coverImage:null,
+            });
+            setImagePreview('');
+            navigate('/');
+        }catch(error){
+            console.error("Error adding recipe:", error);
+        }
     }
 
     return (
@@ -117,7 +139,7 @@ export default function AddRecipe() {
                                         <button type='button'
                                         onClick={() => {
                                             setImagePreview('')
-                                            setFormData(prev => ({...prev, image:null}))
+                                            setFormData(prev => ({...prev, coverImage:null}))
                                         }}
                                         className='absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors'
                                         > <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
