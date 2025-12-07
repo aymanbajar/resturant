@@ -11,9 +11,19 @@ router.post('/', upload.single('coverImage'), async(req,res)=> {
         if(!title || !ingredients || !instructions){
             return res.status(400).send('All fields are required');
         }
-        const newRecipe = await recipeModel.create({title, ingredients, instructions});
+        
+        // Get uploaded file name
+        const coverImage = req.file?.filename || '';
+        
+        const newRecipe = await recipeModel.create({
+            title, 
+            ingredients, 
+            instructions,
+            coverImage
+        });
         res.status(201).json(newRecipe);
     } catch (error) {
+        console.error('Recipe creation error:', error);
         res.status(500).send('Server error');
     }
 } )

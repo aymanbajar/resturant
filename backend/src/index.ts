@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import path from 'path';
 import recipeRoutes from './routes/recipeRoute';
 import userRoutes from './routes/userRoute';
 
@@ -32,9 +33,7 @@ app.use(cors())
 app.use('/recipe',recipeRoutes);
 app.use('/user',userRoutes);
 // for sharing images statically
-app.use('/public',express.static('public'));
-
-
+app.use('/images', express.static( 'public/images'));
 
 app.listen(PORT,() => {
     console.log(`Server is running on port ${PORT}`);
