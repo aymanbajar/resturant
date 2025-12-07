@@ -42,8 +42,18 @@ export default function AddRecipe() {
     const handleSubmit = async(e:React.FormEvent) => {
         e.preventDefault();
         console.log("Form data submitted:", formData);
+        
+        // Create FormData object for file upload
+        const formDataToSend = new FormData();
+        formDataToSend.append('title', formData.title);
+        formDataToSend.append('ingredients', formData.ingredients);
+        formDataToSend.append('instructions', formData.instructions);
+        if(formData.coverImage) {
+            formDataToSend.append('coverImage', formData.coverImage);
+        }
+        
         try{
-            const response = await axios.post(`${BASE_URL}/recipe`, formData,{
+            const response = await axios.post(`${BASE_URL}/recipe`, formDataToSend,{
                 headers:{
                     'Content-Type':'multipart/form-data'
                 }
