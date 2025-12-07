@@ -55,7 +55,8 @@ export default function AddRecipe() {
         try{
             const response = await axios.post(`${BASE_URL}/recipe`, formDataToSend,{
                 headers:{
-                    'Content-Type':'multipart/form-data'
+                    'Content-Type':'multipart/form-data',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 }
             });
             console.log("Recipe added successfully:", response.data);
