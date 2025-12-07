@@ -1,11 +1,13 @@
 import express from 'express';
 import {recipeModel} from '../models/RecipeModel';
 import upload from '../middlewares/mutler';
+import { validateJWT } from '../middlewares/validateJWT';
+import { ExtendRequest } from '../types/ExtendRequest';
 
 const router = express.Router();
 
 // for sending data to server
-router.post('/', upload.single('coverImage'), async(req,res)=> {
+router.post('/', upload.single('coverImage'), validateJWT, async(req: ExtendRequest, res) => {
     try{
         const {title, ingredients, instructions} = req.body;
         if(!title || !ingredients || !instructions){
@@ -19,7 +21,8 @@ router.post('/', upload.single('coverImage'), async(req,res)=> {
             title, 
             ingredients, 
             instructions,
-            coverImage
+            coverImage,
+            createdBy: req.user?._id
         });
         res.status(201).json(newRecipe);
     } catch (error) {
