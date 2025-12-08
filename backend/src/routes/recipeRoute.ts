@@ -44,6 +44,22 @@ router.get('/', async(req,res) => {
     }
 })
 
+// Get user's own recipes
+router.get('/my-recipes', validateJWT, async(req: ExtendRequest, res) => {
+    try{
+        const userId = req.user?._id;
+        if(!userId){
+            return res.status(401).send('Unauthorized');
+        }
+        
+        const recipes = await recipeModel.find({ createdBy: userId });
+        res.status(200).json(recipes);
+    }catch(error){
+        console.error('Error fetching user recipes:', error);
+        res.status(500).send('Server error');
+    }
+})
+
 //get data by id
 router.get('/:id', async(req,res) => {
     try{
@@ -79,7 +95,7 @@ router.put('/:id', async(req,res) => {
     }
 })
 // for deleting data by id
-router.delete('/:id', async(req,res) => {
+router.delete('/:id',validateJWT, async(req: ExtendRequest, res) => {
     try{
         const _id:string = req.params.id;
         const deletedRecipe = await recipeModel.findByIdAndDelete(_id);
