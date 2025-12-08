@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MyRecipes from "./pages/MyRecipes";
 import AddRecipe from "./pages/AddRecipe";
+import ContactPage from "./pages/ContactPage";
 function App() {
   return (
     <>
@@ -22,9 +23,8 @@ function App() {
           <Route element={ <ProtectedRoute /> }>
             <Route path="/myRecipes" element={<MyRecipes />} />
             <Route path="/addRecipe" element={<AddRecipe />} />
-
-
           </Route>
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </BrowserRouter>
       <Footer />

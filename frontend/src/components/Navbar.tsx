@@ -25,9 +25,7 @@ export default function Navbar() {
           <li>
             <a href="/myRecipes">My Recipes</a>
           </li>
-          <li>
-            <a href="/myFavRecipes"> Favourites</a>
-          </li>
+         
           <li>
             <a href="/contact">Contact</a>
           </li>
@@ -81,14 +79,7 @@ export default function Navbar() {
                        My Recipes
                       </a>
                     </li>
-                    <li className="w-full border-b border-white/20 pb-3 hover:border-cyan-300 transition-colors text-center">
-                      <a
-                        href="/myFavRecipes"
-                        className="block hover:text-cyan-300 transition-all duration-300"
-                      >
-                        Favourites
-                      </a>
-                    </li>
+                  
                     <li className="w-full border-b border-white/20 pb-3 hover:border-cyan-300 transition-colors text-center">
                       <a
                         href="/contact"
