@@ -15,26 +15,31 @@ dotenv.config();
 
 // define port
 const PORT = process.env.PORT || 5000;
-// 
 
 // database connection
-mongoose.connect(process.env.DATABASE_URL as string).then(() => {
-    console.log('Connected to MongoDB');
-}).catch((err) => {
-    console.log('Error connecting to MongoDB:', err);
-});
-// for reading data from req body
-app.use(express.json())
-app.use(cors())
+mongoose.connect(process.env.DATABASE_URL as string)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.log('Error connecting to MongoDB:', err));
 
 
-// endpoints
+// ---------- FIXED CORS ----------
+app.use(cors({
+    origin: [
+        "https://resturant-nu-bice.vercel.app/", // ضع رابط الفرونت هنا
+        "http://localhost:5173",
+    ],
+    credentials: true,
+}));
 
-app.use('/recipe',recipeRoutes);
-app.use('/user',userRoutes);
-// for sharing images statically
-app.use('/images', express.static( 'public/images'));
+// body parser
+app.use(express.json());
 
-app.listen(PORT,() => {
-    console.log(`Server is running on port ${PORT}`);
-})
+// ---------- STATIC FILES BEFORE ROUTES ----------
+app.use('/images', express.static('public/images'));
+
+// ROUTES
+app.use('/recipe', recipeRoutes);
+app.use('/user', userRoutes);
+
+// LISTENER
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
