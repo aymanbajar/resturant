@@ -14,17 +14,18 @@ export default function AddRecipe() {
 
 //   function to handle form input changes
     const handleChange =(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const value =(e.target.name ==='ingredients' ? e.target.value.split(',') :(e.target.name ==='coverImage' ? e.target.files?.[0] : e.target.value));
-        setFormData((prev) =>(
-            {
-            ...prev, [e.target.name]:value  
-        }
-        ))
+        const value = e.target.name === 'ingredients' ? e.target.value.split(',') : e.target.value;
+        setFormData((prev) => ({
+            ...prev, 
+            [e.target.name]: value  
+        }));
     }
     // function to handle image input change
     const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-        const file= e.target.files?.[0];
-        if(file){
+        const fileInput = e.target as HTMLInputElement;
+
+        if(fileInput.files && fileInput.files.length > 0){
+            const file = fileInput.files[0];
             setFormData((prev) => ({
                 ...prev,
                 coverImage:file
