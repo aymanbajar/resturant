@@ -1,5 +1,7 @@
 # 🍽️ Restaurant Recipe Management System
 
+for login ayman@bajar.com asd1234
+
 A full-stack MERN application for managing and sharing recipes with user authentication, image uploads, and a modern UI.
 
 ## 📋 Table of Contents
